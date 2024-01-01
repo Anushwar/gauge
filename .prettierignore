@@ -1,0 +1,7 @@
+# Ignore artifacts:
+node_modules
+out
+dist
+coverage
+.eslintcache
+bun.lockb
