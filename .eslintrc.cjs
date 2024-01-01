@@ -9,8 +9,9 @@ module.exports = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['@emotion', 'react-refresh'],
   rules: {
+    '@emotion/pkg-renaming': 'error',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
