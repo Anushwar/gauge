@@ -1,3 +1,4 @@
+import Container from '@components/Container';
 import supabase from '@config/supabase';
 import styled from '@emotion/styled';
 import useAuth from '@hooks/useAuth';
@@ -5,25 +6,14 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { Navigate } from 'react-router-dom';
 
-const Container = styled.div`
-  background-color: #ffffff;
-  max-width: 100vw;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
-  align-items: center;
-`;
-
 const Main = styled.main`
-  width: 100%;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-`;
-
-const Content = styled.div`
-  flex-basis: 100%;
 `;
 
 function Login() {
@@ -34,34 +24,34 @@ function Login() {
   }
 
   return (
-    <Container>
-      <div
-        css={{
-          width: '768px',
-        }}
-      >
-        <h2
-          css={{
-            paddingBottom: '10px',
+    <Container
+      css={{
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Main>
+        <div>
+          <h2
+            css={{
+              paddingBottom: '10px',
+            }}
+          >
+            Welcome to Gauge
+          </h2>
+          <p>Login to get access to all the insights.</p>
+        </div>
+
+        <Auth
+          supabaseClient={supabase}
+          providers={['github']}
+          appearance={{
+            theme: ThemeSupa,
           }}
-        >
-          Welcome to Gauge
-        </h2>
-        <p>Login to get access to all the insights.</p>
-        <Main>
-          <Content>
-            <Auth
-              supabaseClient={supabase}
-              providers={['github']}
-              appearance={{
-                theme: ThemeSupa,
-              }}
-              showLinks={false}
-              onlyThirdPartyProviders
-            />
-          </Content>
-        </Main>
-      </div>
+          showLinks={false}
+          onlyThirdPartyProviders
+        />
+      </Main>
     </Container>
   );
 }
