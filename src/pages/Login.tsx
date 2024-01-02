@@ -1,4 +1,4 @@
-import Container from '@components/Container';
+import { Container } from '@components/Container';
 import supabase from '@config/supabase';
 import styled from '@emotion/styled';
 import useAuth from '@hooks/useAuth';

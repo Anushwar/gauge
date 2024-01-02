@@ -8,6 +8,7 @@ const Card = styled.div<{ bgColor: string; borderColor?: string }>`
   border-radius: 12px;
   padding: 20px;
   margin: 20px;
+  text-align: center;
 
   ${mq('md')} {
     flex: 1;
