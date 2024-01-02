@@ -1,14 +1,26 @@
+import ProtectedRoute from '@components/ProtectedRoute';
+import Dashboard from '@pages/Dashboard';
+import Login from '@pages/Login';
+import { AuthProvider } from '@providers/Auth';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 function App() {
   return (
-    <div>
-      <p
-        css={{
-          color: 'red',
-        }}
-      >
-        Hello World
-      </p>
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
