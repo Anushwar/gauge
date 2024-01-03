@@ -1,11 +1,15 @@
 import styled from '@emotion/styled';
+import { mq } from '@helpers/style';
 
-const Header = styled.header`
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
+const Header = styled.div`
+  display: flex;
   width: '100%';
-  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+
+  ${mq('md')} {
+    display: none;
+  }
 `;
 
 export default Header;

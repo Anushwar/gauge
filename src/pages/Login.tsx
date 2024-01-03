@@ -26,6 +26,7 @@ function Login() {
   return (
     <Container
       css={{
+        height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
       }}

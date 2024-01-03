@@ -8,7 +8,7 @@ import {
   netProfit,
   projectCompletion,
   raisedCapital,
-} from 'lib/mock/data';
+} from '@mock/data';
 import { DashboardContainer } from '@components/Container';
 
 const Dashboard = () => {
@@ -48,6 +48,7 @@ const Dashboard = () => {
               scales: {
                 y: {
                   beginAtZero: true,
+                  stacked: true,
                 },
                 x: {
                   stacked: true,
