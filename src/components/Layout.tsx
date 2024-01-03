@@ -3,6 +3,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import useAuth from '@hooks/useAuth';
 import { Container, LayoutContainer } from './Container';
+import ProfileCard from './ProfileCard';
 
 interface LayoutProps {
   children: React.ReactNode | JSX.Element;
@@ -25,7 +26,20 @@ const Layout = ({ children }: LayoutProps) => {
       </Header>
       <Container>
         <Sidebar>Sidebar Content</Sidebar>
-        <MainContent>{children}</MainContent>
+        <div
+          css={{
+            width: '100%',
+            height: 'auto',
+            overflow: 'auto',
+          }}
+        >
+          <ProfileCard
+            companyName="Sample Org Private Limited"
+            cin="123456789"
+            profilePicUrl="https://placehold.co/500?text=Company"
+          />
+          <MainContent>{children}</MainContent>
+        </div>
       </Container>
     </LayoutContainer>
   );

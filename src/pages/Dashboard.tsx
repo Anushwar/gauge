@@ -17,11 +17,11 @@ const Dashboard = () => {
       <DashboardContainer>
         <Card bgColor="#FBFCFD">
           <p>Raised Capital</p>
-          <Chart type="bar" data={raisedCapital} />
+          <Chart type="bar" data={raisedCapital} options={{ aspectRatio: 1 }} />
         </Card>
         <Card bgColor="#FBFCFD">
           <p>Account Status</p>
-          <Chart type="line" data={accountStatus} />
+          <Chart type="pie" data={accountStatus} />
         </Card>
         <Card bgColor="#FBFCFD">
           <p>Employee Performance</p>
@@ -29,6 +29,7 @@ const Dashboard = () => {
             type="line"
             data={employeePerformance}
             options={{
+              aspectRatio: 1,
               scales: {
                 y: {
                   beginAtZero: true,
@@ -43,6 +44,7 @@ const Dashboard = () => {
             type="bar"
             data={projectCompletion}
             options={{
+              aspectRatio: 1,
               scales: {
                 y: {
                   beginAtZero: true,

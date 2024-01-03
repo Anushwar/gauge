@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { mq } from '@helpers/style';
 
 // Styled component for a card
-const Card = styled.div<{ bgColor: string; borderColor?: string }>`
+const Card = styled.div<{ bgColor: string }>`
   background-color: ${(props) => props.bgColor};
   border: 1px solid #e5e8eb;
   border-radius: 12px;
