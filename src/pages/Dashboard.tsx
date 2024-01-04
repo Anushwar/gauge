@@ -1,39 +1,65 @@
-import styled from '@emotion/styled';
 import Layout from '@components/Layout';
 import Card from '@components/Card';
-import { mq } from '@helpers/style';
 
-const DashboardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-
-  ${mq('md')} {
-    flex-direction: row;
-  }
-`;
+import Chart from '@components/Chart';
+import {
+  accountStatus,
+  employeePerformance,
+  netProfit,
+  projectCompletion,
+  raisedCapital,
+} from '@mock/data';
+import { DashboardContainer } from '@components/Container';
 
 const Dashboard = () => {
   return (
     <Layout>
       <DashboardContainer>
         <Card bgColor="#FBFCFD">
-          <p
-            css={{
-              color: '#333',
-            }}
-          >
-            Sales Data
-          </p>
+          <p>Raised Capital</p>
+          <Chart type="bar" data={raisedCapital} options={{ aspectRatio: 1 }} />
         </Card>
         <Card bgColor="#FBFCFD">
-          <p
-            css={{
-              color: '#333',
+          <p>Account Status</p>
+          <Chart type="pie" data={accountStatus} />
+        </Card>
+        <Card bgColor="#FBFCFD">
+          <p>Employee Performance</p>
+          <Chart
+            type="line"
+            data={employeePerformance}
+            options={{
+              aspectRatio: 1,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
             }}
-          >
-            User Statistics
-          </p>
+          />
+        </Card>
+        <Card bgColor="#FBFCFD">
+          <p>Project Completion</p>
+          <Chart
+            type="bar"
+            data={projectCompletion}
+            options={{
+              aspectRatio: 1,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  stacked: true,
+                },
+                x: {
+                  stacked: true,
+                },
+              },
+            }}
+          />
+        </Card>
+        <Card bgColor="#FBFCFD">
+          <p>Net Profit</p>
+          <Chart type="doughnut" data={netProfit} />
         </Card>
       </DashboardContainer>
     </Layout>

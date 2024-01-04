@@ -1,42 +1,103 @@
 import styled from '@emotion/styled';
-import { mq } from '@helpers/style';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import Container from './Container';
+import { Sidebar, ProfileSection } from './Sidebar';
 import useAuth from '@hooks/useAuth';
+import { Container, LayoutContainer } from './Container';
+import ProfileCard from './ProfileCard';
+import { Menu, MenuItem } from './Menu';
+import { menuItems, user } from '@mock/dashboard';
+import { useRef, useState } from 'react';
+import HamburgerIcon from './HamburgerIcon';
+import Header from './Header';
 
 interface LayoutProps {
   children: React.ReactNode | JSX.Element;
 }
 
-const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  ${mq('md')} {
-    flex-direction: column;
-  }
-`;
-
 // Styled component for the main content area
 const MainContent = styled.main`
   flex-grow: 1;
-  padding: 20px;
+  overflow: scroll;
+`;
+
+const Avatar = styled.img`
+  border-radius: 50%;
+  margin-right: 10px;
 `;
 
 const Layout = ({ children }: LayoutProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const hamburgerIconRef = useRef<HTMLButtonElement>(null);
   const { signOut } = useAuth();
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      hamburgerIconRef.current?.classList.add('open');
+    } else {
+      hamburgerIconRef.current?.classList.remove('open');
+    }
+  };
+
   return (
     <LayoutContainer>
-      <Header>
-        <div>
-          <p>Header Content</p> <button onClick={signOut}> Sign Out </button>
-        </div>
-      </Header>
       <Container>
-        <Sidebar>Sidebar Content</Sidebar>
-        <MainContent>{children}</MainContent>
+        <Sidebar>
+          <Header>
+            <img
+              src="https://placehold.co/100?text=Company"
+              width={50}
+              height={50}
+              alt="Company Logo"
+              css={{
+                borderRadius: '50%',
+              }}
+            />
+            <HamburgerIcon ref={hamburgerIconRef} onClick={toggleMenu}>
+              <div />
+              <div />
+              <div />
+            </HamburgerIcon>
+          </Header>
+          <ProfileSection isOpen={isOpen}>
+            <Avatar src={user.avatar} alt="User avatar" />
+            <div
+              css={{
+                fontWeight: 'bold',
+              }}
+            >
+              {user.name}
+            </div>
+          </ProfileSection>
+          <Menu isOpen={isOpen}>
+            {menuItems.map((item) => (
+              <MenuItem key={item.name} className={item.active ? 'active' : ''}>
+                {item.label}
+              </MenuItem>
+            ))}
+            <MenuItem
+              css={{
+                color: 'red',
+              }}
+              onClick={signOut}
+            >
+              Sign Out
+            </MenuItem>
+          </Menu>
+        </Sidebar>
+        <div
+          css={{
+            width: '100%',
+            height: 'auto',
+            overflow: 'auto',
+          }}
+        >
+          <ProfileCard
+            companyName="Sample Org Private Limited"
+            cin="123456789"
+            profilePicUrl="https://placehold.co/500?text=Company"
+          />
+          <MainContent>{children}</MainContent>
+        </div>
       </Container>
     </LayoutContainer>
   );
