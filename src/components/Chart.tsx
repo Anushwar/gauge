@@ -1,33 +1,8 @@
 import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  ArcElement,
-  PointElement,
-  LineElement,
-  RadialLinearScale,
-  Title,
-  Tooltip,
-  Colors,
-  Legend,
-} from 'chart.js';
+import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart as ChartComponent, type ChartProps } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  RadialLinearScale,
-  LinearScale,
-  LineElement,
-  PointElement,
-  BarElement,
-  ArcElement,
-  Colors,
-  Title,
-  Tooltip,
-  Legend,
-);
+ChartJS.register(...registerables);
 
 interface Props extends ChartProps {
   type:
